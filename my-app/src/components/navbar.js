@@ -1,21 +1,22 @@
 import Navbar from 'react-bootstrap/Navbar';
 import Nav from 'react-bootstrap/Nav';
-import Container from 'react-bootstrap/Container';
-import Button from 'react-bootstrap/esm/Button';
+import { Link } from 'react-router-dom';
 
-const Navigationbar = ({handleStaffClick}) => {
+
+
+const Navigationbar = () => {
     return ( 
         <Navbar bg="primary" variant="dark">
-            <Container>
-            <Navbar.Brand href="#home">Nonprofit's College Internships Board</Navbar.Brand>
-            <Nav className="me-auto">
-            <Nav.Link href="#home">Add Internship</Nav.Link>
-            <Nav.Link as='button' className= 'btn btn-outline-primary' onClick={handleStaffClick}>Career Success Staff</Nav.Link>
-            <Nav.Link href="#pricing">Some Other Function</Nav.Link>
-            </Nav>
-            </Container>
+            <Navbar.Brand>Nonprofit's College Internships Board</Navbar.Brand>
+        <Nav className="me-auto">
+            <Nav.Link as={Link} to ='/'>Home</Nav.Link>
+            <Nav.Link as={Link} to ='/add'>Add Internship</Nav.Link>
+            <Nav.Link as={Link} to ='/staff'>Career Success Staff</Nav.Link>
+            <Nav.Link as={Link} to ='/other'>Some Other Function</Nav.Link>
+        </Nav>
         </Navbar>
     );
 }
- 
+
+
 export default Navigationbar;

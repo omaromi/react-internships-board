@@ -1,17 +1,14 @@
 import {useState, useEffect} from 'react';
-import Button from 'react-bootstrap/Button';
-import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col';
 import Container from 'react-bootstrap/Container';
-import Card from 'react-bootstrap/Card';
-import Stack from 'react-bootstrap/Stack';
 import Jobcard from './jobcard';
-import Navigationbar from './navbar';
+import { withRouter } from 'react-router-dom';
 
 
-const Home = () => {
+
+const Homepage = () => {
     const [jobs, setJobs] = useState(null);
-    const [isStaffClicked, setIsStaffClicked] = useState(false);
+    const [staffs, setStaffs] = useState(null);
+    
 
     useEffect(()=>{
         fetch('http://127.0.0.1:8000/internships/').then(
@@ -27,8 +24,7 @@ const Home = () => {
             res => {return res.json()}
             ).then(data => {
                 console.log(data.staffs);
-                setJobs(data.staffs)})
-        console.log('staff data retrieved')
+                setStaffs(data.staffs)})
     }
     ,[]
     )
@@ -44,23 +40,14 @@ const Home = () => {
         setJobs(newJobs);
     };
 
-    const handleStaffClick = () => {
-        console.log('staff clicked worked');
-        isStaffClicked ? setIsStaffClicked(false): setIsStaffClicked(true);
-    };
-
 
     return (
-        <div>
-        <Navigationbar handleStaffClick={handleStaffClick} />
         <div className='job-display'>
             <Container className='container-md py-4'>
-            { isStaffClicked && <div><h2>Here's an image of each of the staff</h2></div>}
-            { !isStaffClicked && jobs && <Jobcard jobs={jobs} handleIzaClick={handleIzaClick} />}
+            { jobs && <Jobcard jobs={jobs} handleIzaClick={handleIzaClick} />}
             </Container>
-        </div>
         </div>
      );
 }
  
-export default Home;
+export default Homepage;
