@@ -5,9 +5,6 @@ import FloatingLabel from "react-bootstrap/esm/FloatingLabel";
 import Container from "react-bootstrap/esm/Container";
 
 const AddInternship = () => {
-    // const [positionTitle, setPositionTitle] = useState('');
-    // const [appLink, setAppLink] = useState('');
-    // const [jobDesc, setJobDesc] = useState('');
 
     const [state, setState] = useState({
         position_title: '',
@@ -15,9 +12,18 @@ const AddInternship = () => {
         description: '',
         duedate: '',
         staff:'',
-        company:''
+        company:'',
     })
     
+    // const [ddvalue,setDDvalue] = useState('')
+    // const handleDropdown = (e) => {
+    //     console.log('dropdown handled', e);
+    //     setDDvalue(e)
+    // }
+
+    const getstafflist = (e) => {
+        
+    }
 
     // Need to add fullform, full object, so that it can create a proper post request
     const handleInternshipAdd = (e) => {
@@ -26,6 +32,9 @@ const AddInternship = () => {
             'position_title': state.position_title, 
             'app_link': state.app_link, 
             'description': state.description,
+            'duedate':state.duedate,
+            'staff': state.staff,
+
         }
         console.log('newobject:', newInternship)
 
@@ -35,7 +44,6 @@ const AddInternship = () => {
             body: JSON.stringify(newInternship)
         }).then(()=> { console.log('new internship POSTed')}
         )
-
     }
     
     return ( 
@@ -75,20 +83,46 @@ const AddInternship = () => {
                         'description': e.target.value})
                 )}}                />
             </FloatingLabel>
-            {/* <Form.Select className='mb-3' label="Assigned Staff Member" value={staff} >
+            <FloatingLabel className='mb-3' controlId='duedate' label='Due Date:'>
+                <Form.Control
+                type="text"
+                value={state.duedate}
+                onChange= {(e)=> {
+                    e.persist();
+                    setState((values) => ({
+                        ...values,
+                        'duedate': e.target.value})
+                )}} 
+                />
+            </FloatingLabel>
+            <Form.Select className='mb-3' label="Assigned Staff Member" value={state.staff}
+                onChange={(e)=> {
+                    e.persist();
+                    setState((values) => ({
+                        ...values,
+                        'staff': e.target.value})
+                );
+                // handleDropdown(e.target.value)
+                }}>
                 <option>Assigned Staff Member</option>
-                <option value="1">Omar</option>
-                <option value="2">Iza</option>
-                <option value="3">Raven</option>
-                <option value="4">Stephanie</option>
+                {/* <option value="Omar">Omar</option>
+                <option value="Iza">Iza</option>
+                <option value="Raven">Raven</option>
+                <option value="Stephanie">Stephanie</option> */}
+
+                {['Omar','Iza','Raven','Stephanie'].map((e, c=1)=> {
+                    return(<option key={c} value={e}>{e}</option>)
+                    c++
+                console.log(e)})}
+
             </Form.Select>
             <Form.Select className='mb-3' label="Company">
-            <option>Company</option>
+                <option>Company</option>
                 <option value="1">Spotify</option>
                 <option value="2">Facebook</option>
                 <option value="3">Amazon</option>
                 <option value="4">Pinterest</option>
-            </Form.Select> */}
+            </Form.Select>
             <Button className='btn-secondary float-start' type='submit' >Submit</Button>
             </Form>
             </Container>

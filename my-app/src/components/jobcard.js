@@ -32,7 +32,7 @@ const Jobcard = ({jobs,handleIzaClick}) => {
                     <Card.Footer>
                         <Stack gap={2}>
                         <small>Currently Assigned to: {job.staff}</small>
-                        <Button variant="primary" onClick={() => handleIzaClick(job['id'])}>Assign to Iza</Button>
+                        {/* <Button variant="primary" onClick={() => handleIzaClick(job['id'])}>Assign to Iza</Button> */}
                         </Stack>
                     </Card.Footer>
                 </Card>
