@@ -15,20 +15,19 @@ const Staffcard = ({staffs}) => {
 
                     <div className="card-header">    
                         <small className='btn disabled float-start'>{staff.name}</small>
+                        <small className='btn float-end'>{staff.name}'s Internships</small>
                     </div>
 
                     <div className="card-body">
                         <h5 className="card-title">Email Address: {staff.email}</h5>
                     </div>
 
-                    <Card.Footer>
-                        <Accordion flush>
+                        <Accordion className='card-footer' flush>
                             <Accordion.Item eventKey="0">
                             <Accordion.Header> {staff.position}  </Accordion.Header>
                             <Accordion.Body>Email Address: {staff.email}</Accordion.Body>
                             </Accordion.Item>
                         </Accordion>
-                    </Card.Footer>
                 </Card>
                 </Col>
             ))}

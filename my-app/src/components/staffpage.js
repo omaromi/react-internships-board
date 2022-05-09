@@ -1,20 +1,21 @@
 import {useState, useEffect} from 'react';
 import Container from 'react-bootstrap/Container';
 import Staffcard from './staffcard';
-import { withRouter } from 'react-router-dom';
-
 
 
 const Staffpage = () => {
     const [staffs, setStaffs] = useState(null);
 
-    useEffect( () =>{
+    useEffect(() =>{
         fetch('http://127.0.0.1:8000/staffs/').then(
             res => {return res.json()}
             ).then(data => {
-                console.log(data.staffs);
+                // data.staffs.forEach(e => console.log(e.name));
                 setStaffs(data.staffs)})
-        console.log('staff data retrieved')
+        console.log('staff data retrieved again')
+        if (staffs) {
+            staffs.forEach(e => console.log(e.name))
+        }
     }
     ,[]
     )
