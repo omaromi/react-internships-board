@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Button from "react-bootstrap/esm/Button";
 import Form from 'react-bootstrap/Form'
 import FloatingLabel from "react-bootstrap/esm/FloatingLabel";
@@ -21,9 +21,14 @@ const AddInternship = () => {
     //     setDDvalue(e)
     // }
 
-    const getstafflist = (e) => {
-        
-    }
+    const getstafflist = () => {
+        fetch('http://127.0.0.1:8000/staffs/')
+        .then(
+            res => {return res.json()}
+            ).then(data => {data.staffs.forEach(e => console.log(e.name))});
+            
+    };
+    
 
     // Need to add fullform, full object, so that it can create a proper post request
     const handleInternshipAdd = (e) => {
@@ -37,14 +42,13 @@ const AddInternship = () => {
 
         }
         console.log('newobject:', newInternship)
+        // getstafflist()
 
         fetch('http://127.0.0.1:8000/internships/', {
             method: 'POST',
             headers: {'Content-Type': 'application/json'},
             body: JSON.stringify(newInternship)
-        }).then(()=> { console.log('new internship POSTed')}
-        )
-    }
+        }).then(()=> { console.log('new internship POSTed')})}
     
     return ( 
         <div className='add-internship'>
@@ -127,8 +131,5 @@ const AddInternship = () => {
             </Form>
             </Container>
         </div>
-
-     );
-}
- 
+    )};
 export default AddInternship;
