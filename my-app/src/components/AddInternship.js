@@ -3,6 +3,7 @@ import Button from "react-bootstrap/esm/Button";
 import Form from 'react-bootstrap/Form'
 import FloatingLabel from "react-bootstrap/esm/FloatingLabel";
 import Container from "react-bootstrap/esm/Container";
+import useFetch from "../hooks/useFetch";
 
 const AddInternship = () => {
 
@@ -15,19 +16,35 @@ const AddInternship = () => {
         company:'',
     })
     
-    // const [ddvalue,setDDvalue] = useState('')
-    // const handleDropdown = (e) => {
-    //     console.log('dropdown handled', e);
-    //     setDDvalue(e)
-    // }
-
-    const getstafflist = () => {
-        fetch('http://127.0.0.1:8000/staffs/')
+    const [staffdd,setStaffdd] = useState([])
+    useEffect(()=>{
+        fetch('http://127.0.0.1:8000/staffnames/')
         .then(
             res => {return res.json()}
-            ).then(data => {data.staffs.forEach(e => console.log(e.name))});
-            
-    };
+            ).then(data => {
+                setStaffdd(data.staffnames)})
+    }, []);
+
+    const [companydd,setCompanydd] = useState([])
+    useEffect(()=>{
+        fetch('http://127.0.0.1:8000/companynames/')
+        .then(
+            res => {return res.json()}
+            ).then(data => {
+                setCompanydd(data.companynames)})
+    }, []);
+
+    // fetch('http://127.0.0.1:8000/staffnames/')
+    //     .then(
+    //         res => {return res.json()}
+    //         ).then(data => {
+    //             console.log('data', new Array(data))
+    //             StaffNames.concat(new Array(data))
+    //             return new Array(data)
+    //         });
+
+    // // console.log('datafetched',datafetched)
+    // console.log('staffnames', StaffNames)
     
 
     // Need to add fullform, full object, so that it can create a proper post request
@@ -114,18 +131,20 @@ const AddInternship = () => {
                 <option value="Raven">Raven</option>
                 <option value="Stephanie">Stephanie</option> */}
 
-                {['Omar','Iza','Raven','Stephanie'].map((e, c=1)=> {
+                {staffdd.map((e, c=1)=> {
                     return(<option key={c} value={e}>{e}</option>)
-                    c++
-                console.log(e)})}
+                    c++})}
 
             </Form.Select>
             <Form.Select className='mb-3' label="Company">
                 <option>Company</option>
-                <option value="1">Spotify</option>
+                {companydd.map((e, c=1)=> {
+                    return(<option key={c} value={e}>{e}</option>)
+                    c++})}
+                {/* <option value="1">Spotify</option>
                 <option value="2">Facebook</option>
                 <option value="3">Amazon</option>
-                <option value="4">Pinterest</option>
+                <option value="4">Pinterest</option> */}
             </Form.Select>
             <Button className='btn-secondary float-start' type='submit' >Submit</Button>
             </Form>

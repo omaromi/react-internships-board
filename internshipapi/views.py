@@ -17,13 +17,13 @@ def StaffNames(request):
     Staffs = Staff.objects.all()
     serializer = StaffSerializer(Staffs,many=True)
     StaffNames = [x['name'] for x in serializer.data]
-    return JsonResponse(StaffNames, safe=False)
+    return JsonResponse({'staffnames':StaffNames}, safe=False)
 
 def CompanyNames(request):
     Companys = Company.objects.all()
     serializer = CompanySerializer(Companys,many=True)
     CompanyNames = [x['name'] for x in serializer.data]
-    return JsonResponse(CompanyNames, safe=False)
+    return JsonResponse({'companynames':CompanyNames}, safe=False)
 
 
 @api_view(['GET', 'POST'])
