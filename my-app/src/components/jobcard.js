@@ -12,7 +12,6 @@ const Jobcard = ({jobs,handleIzaClick}) => {
 
     return ( 
         <div className='job-list'>
-            <React.Fragment><TestForm /> </React.Fragment>
 
             <Row className='row row-cols-md-3 row-cols-sm-2 g-4'>
             {jobs.map((job) => (

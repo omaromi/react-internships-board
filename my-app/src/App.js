@@ -4,6 +4,7 @@ import Homepage from './components/homepage';
 import Staffpage from './components/staffpage';
 import { Route, Switch } from 'react-router-dom';
 import AddInternship from './components/AddInternship';
+import SomeOtherFunction from './components/othertest';
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
             <Route path='/staff'><Staffpage /> </Route>
             <Route path ='/' exact><Homepage /></Route>
             <Route path='/add'><AddInternship /></Route>
+            <Route path='/other'><SomeOtherFunction /></Route>
           </Switch>
         </div>
       </div>

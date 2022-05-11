@@ -80,3 +80,6 @@ def InternshipDetail(request,id):
     elif request.method == 'DELETE':
         posting.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
+
+# def staff_internships(request,staff_id):
+#     return # unsure yet
