@@ -18,36 +18,6 @@ const AddInternship = () => {
     
     const staffNames = useFetch('staffnames',[])
     const companyNames = useFetch('companynames',[])
-
-    // const [staffdd,setStaffdd] = useState([])
-    // useEffect(()=>{
-    //     fetch('http://127.0.0.1:8000/staffnames/')
-    //     .then(
-    //         res => {return res.json()}
-    //         ).then(data => {
-    //             setStaffdd(data.staffnames)})
-    // }, []);
-
-    // const [companydd,setCompanydd] = useState([])
-    // useEffect(()=>{
-    //     fetch('http://127.0.0.1:8000/companynames/')
-    //     .then(
-    //         res => {return res.json()}
-    //         ).then(data => {
-    //             setCompanydd(data.companynames)})
-    // }, []);
-
-    // fetch('http://127.0.0.1:8000/staffnames/')
-    //     .then(
-    //         res => {return res.json()}
-    //         ).then(data => {
-    //             console.log('data', new Array(data))
-    //             StaffNames.concat(new Array(data))
-    //             return new Array(data)
-    //         });
-
-    // // console.log('datafetched',datafetched)
-    // console.log('staffnames', StaffNames)
     
 
     // Need to add fullform, full object, so that it can create a proper post request
@@ -57,19 +27,17 @@ const AddInternship = () => {
             'position_title': state.position_title, 
             'app_link': state.app_link, 
             'description': state.description,
-            'duedate':state.duedate,
+            'duedate': state.duedate,
             'staff': state.staff,
-            'company':state.company
-
+            'company': state.company,
         }
         console.log('newobject:', newInternship)
-        // getstafflist()
 
         fetch('http://127.0.0.1:8000/internships/', {
             method: 'POST',
             headers: {'Content-Type': 'application/json'},
             body: JSON.stringify(newInternship)
-        }).then(()=> { console.log('new internship POSTed')})}
+        }).then(()=> { console.log('new internship POSTed')})};
     
     return ( 
         <div className='add-internship'>

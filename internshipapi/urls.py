@@ -24,4 +24,5 @@ urlpatterns = [
     path('companys/', views.CompanyList),
     path('staffnames/', views.StaffNames),
     path('companynames/',views.CompanyNames),
+    path('internships/<int:id>',views.InternshipDetail),
 ]
