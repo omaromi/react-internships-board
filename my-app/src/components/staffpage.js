@@ -8,7 +8,7 @@ import useFetch from '../hooks/useFetch';
 const Staffpage = () => {
     // const [staffs, setStaffs] = useState(null);
 
-    const staffs = useFetch('staffs');
+    const staffs = useFetch('staffs',null);
 
     // useEffect(() =>{
     //     fetch('http://127.0.0.1:8000/staffs/').then(

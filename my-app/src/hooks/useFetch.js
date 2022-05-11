@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 
-const useFetch = (endpoint) => {
-    const [data, setData] = useState(null)
+const useFetch = (endpoint,init) => {
+    const [data, setData] = useState(init)
 
     useEffect(()=>{
         fetch('http://127.0.0.1:8000/'+ endpoint + '/')

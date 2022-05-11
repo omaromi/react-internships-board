@@ -16,23 +16,26 @@ const AddInternship = () => {
         company:'',
     })
     
-    const [staffdd,setStaffdd] = useState([])
-    useEffect(()=>{
-        fetch('http://127.0.0.1:8000/staffnames/')
-        .then(
-            res => {return res.json()}
-            ).then(data => {
-                setStaffdd(data.staffnames)})
-    }, []);
+    const staffNames = useFetch('staffnames',[])
+    const companyNames = useFetch('companynames',[])
 
-    const [companydd,setCompanydd] = useState([])
-    useEffect(()=>{
-        fetch('http://127.0.0.1:8000/companynames/')
-        .then(
-            res => {return res.json()}
-            ).then(data => {
-                setCompanydd(data.companynames)})
-    }, []);
+    // const [staffdd,setStaffdd] = useState([])
+    // useEffect(()=>{
+    //     fetch('http://127.0.0.1:8000/staffnames/')
+    //     .then(
+    //         res => {return res.json()}
+    //         ).then(data => {
+    //             setStaffdd(data.staffnames)})
+    // }, []);
+
+    // const [companydd,setCompanydd] = useState([])
+    // useEffect(()=>{
+    //     fetch('http://127.0.0.1:8000/companynames/')
+    //     .then(
+    //         res => {return res.json()}
+    //         ).then(data => {
+    //             setCompanydd(data.companynames)})
+    // }, []);
 
     // fetch('http://127.0.0.1:8000/staffnames/')
     //     .then(
@@ -56,6 +59,7 @@ const AddInternship = () => {
             'description': state.description,
             'duedate':state.duedate,
             'staff': state.staff,
+            'company':state.company
 
         }
         console.log('newobject:', newInternship)
@@ -123,28 +127,24 @@ const AddInternship = () => {
                         ...values,
                         'staff': e.target.value})
                 );
-                // handleDropdown(e.target.value)
                 }}>
                 <option>Assigned Staff Member</option>
-                {/* <option value="Omar">Omar</option>
-                <option value="Iza">Iza</option>
-                <option value="Raven">Raven</option>
-                <option value="Stephanie">Stephanie</option> */}
-
-                {staffdd.map((e, c=1)=> {
-                    return(<option key={c} value={e}>{e}</option>)
-                    c++})}
-
+                {staffNames.map((e, c=0)=> {
+                    c++;
+                    return(<option key={c} value={e}>{e}</option>)})}
             </Form.Select>
-            <Form.Select className='mb-3' label="Company">
+            <Form.Select className='mb-3' label="Company" value={state.company}
+                onChange={(e)=> {
+                    e.persist();
+                    setState((values) => ({
+                        ...values,
+                        'company': e.target.value})
+                );
+                }}>
                 <option>Company</option>
-                {companydd.map((e, c=1)=> {
-                    return(<option key={c} value={e}>{e}</option>)
-                    c++})}
-                {/* <option value="1">Spotify</option>
-                <option value="2">Facebook</option>
-                <option value="3">Amazon</option>
-                <option value="4">Pinterest</option> */}
+                {companyNames.map((e, c=0)=> {
+                    c++;
+                    return(<option key={c} value={e}>{e}</option>)})}
             </Form.Select>
             <Button className='btn-secondary float-start' type='submit' >Submit</Button>
             </Form>

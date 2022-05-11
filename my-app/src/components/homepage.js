@@ -6,35 +6,9 @@ import useFetch from '../hooks/useFetch';
 
 
 const Homepage = () => {
-    // const [jobs, setJobs] = useState(null);
-    // const [staffs, setStaffs] = useState(null);
-    
 
-    const jobs = useFetch('internships');
-    // useEffect(()=>{
-    //     fetch('http://127.0.0.1:8000/'+ 'internships' + '/').then(
-    //         res => {return res.json()}
-    //         ).then(data => {
-    //             // console.log(data.internships);
-    //             setJobs(data.internships)})
-    //     // console.log('internship data retrieved')
-    // }, []);
+    const jobs = useFetch('internships',null);
 
-    // const staffs = useFetch('staffs');
-    // useEffect( () =>{
-    //     fetch('http://127.0.0.1:8000/staffs/').then(
-    //         res => {return res.json()}
-    //         ).then(data => {
-    //             // console.log(data.staffs);
-    //             setStaffs(data.staffs)})
-    // }
-    // ,[]
-    // )
-
-    // const [iza, setIza] = useState(jobs)
-    // setIza
-    // console.log(iza)
-    // console.log(jobs)
     // const handleIzaClick = (id) => {
     //     // https://stackoverflow.com/questions/55856176/ui-not-re-rendering-on-state-update-using-react-hooks-and-form-submission
     //     // When tryna establish a new array, use three dots and the square brackets. just using single equal references the original so it does not get sensed as a state change
