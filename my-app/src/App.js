@@ -7,6 +7,7 @@ import AddInternship from './components/AddInternship';
 import SomeOtherFunction from './components/othertest';
 import StaffInternships from './components/StaffInternships';
 import EditInternship from './components/EditInternship';
+import InternshipDetails from './components/InternshipDetails';
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
             <Route path='/filter'><SomeOtherFunction /></Route>
             <Route path='/internships/:id'><StaffInternships /></Route>
             <Route path='/edit/:id'><EditInternship /></Route>
+            <Route path='/internshipdetails/:id'><InternshipDetails /></Route>
           </Switch>
         </div>
       </div>

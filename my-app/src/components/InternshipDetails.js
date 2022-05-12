@@ -1,29 +1,22 @@
-import Button from "react-bootstrap/Button";
+import { useParams } from "react-router-dom";
+import useFetch from "../hooks/useFetch";
+import Jobcard from "./jobcard";
 import Col from "react-bootstrap/Col";
-import Row from "react-bootstrap/Row";
 import Card from 'react-bootstrap/Card';
 import Stack from 'react-bootstrap/Stack';
-import TestForm from "./Form";
-import React from "react";
-import { Link, useHistory } from "react-router-dom";
+import Button from "react-bootstrap/esm/Button";
+import { Link } from "react-router-dom";
 
+const InternshipDetails = () => {
+    
+    let {id} = useParams()
 
-
-const Jobcard = ({jobs}) => {
-
-    const history = useHistory()
-
-    const handleDelete = (id) => {
-        fetch('http://127.0.0.1:8000/internships/' + id, {method:'DELETE'}
-        ).then(history.push('/'))
-        }
+    const [job] = useFetch('internships',[]).filter(obj => obj.id == id)
 
     return ( 
-        <div className='job-list'>
-
-            <Row className='row row-cols-md-3 row-cols-sm-2 g-4'>
-            {jobs.map((job) => (
-                <Col key={job.id}>
+        <div className='internshipDetails'>
+            {job &&
+            <Col key={job.id}>
                 <Card className='card h-100'>
 
                     <div className="card-header">    
@@ -33,7 +26,7 @@ const Jobcard = ({jobs}) => {
 
                     <div className="card-body">
                         <h5 className="card-title">{job['position_title']}</h5>
-                        <Link to={'/internshipdetails/' + job.id} className="btn btn-outline-secondary ">Learn More</Link>
+                        <p>{job.description}</p>
                     </div>
 
                     <Card.Footer>
@@ -43,15 +36,12 @@ const Jobcard = ({jobs}) => {
                         
                         </Stack>
                         <Button as={Link} to={'/edit/' + job.id}>Edit Here</Button>
-                        <Button className='btn btn-secondary float-end' onClick={() => handleDelete(job.id)}>Delete</Button>
+                        {/* <Button className='btn btn-secondary float-end' onClick={() => handleDelete(job.id)}>Delete</Button> */}
                     </Card.Footer>
                 </Card>
-                </Col>
-            ))}
-            </Row>
-            
-            </div>
-    )
-
-        }
-export default Jobcard;
+                </Col>}
+        </div>
+     );
+}
+ 
+export default InternshipDetails;

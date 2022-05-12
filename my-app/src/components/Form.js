@@ -7,6 +7,8 @@ import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
 import Card from 'react-bootstrap/Card';
 import Stack from 'react-bootstrap/Stack';
+import Container from "react-bootstrap/esm/Container";
+import Jobcard from "./jobcard";
 
 const TestForm = () => {
     const [staffFilter, setStaffFilter] = useState('');
@@ -22,7 +24,7 @@ const TestForm = () => {
     //     // console.log('custom data retrieved')
     // }, []);
 
-    const jobs = useFetch('internships',null);
+    const jobs = useFetch('internships',[]).filter(obj=>obj.staff == staffFilter);
     // const staffs = useFetch('staffs',null);
     // const staffNames = useFetch('staffnames',[]);
     // const companyNames = useFetch('companynames',[]);
@@ -43,36 +45,13 @@ const TestForm = () => {
             <Form>
                 <label>Enter Staff Name to Filter:</label>
                 <input type='text' onChange={(e) => setStaffFilter(e.target.value)}/>
-                <Button variant='secondary' value={staffFilter}>Submit</Button>
+                {/* <Button variant='secondary' value={staffFilter}>Submit</Button> */}
             </Form>
             {/* <Button variant='secondary' value='Omar' onClick={filterOmar}>Omar's Filter</Button> */}
             {/* <p>{staffFilter}</p> */}
-            <div>{staffFilter && jobs.filter((p) => {
-                return p.staff === staffFilter;
-            }).map((job) => (
-                <Col key={job.id}>
-                <Card className='card h-100'>
-
-                    <div className="card-header">    
-                        <small className='btn disabled text-primary float-start'>{job.company}</small>
-                        <a href={job.app_link} className='btn btn-outline-primary float-end'>Apply Here</a>
-                    </div>
-
-                    <div className="card-body">
-                        <h5 className="card-title">{job['position_title']}</h5>
-                        <a href="#" className="btn btn-outline-secondary ">Learn More</a>
-                    </div>
-
-                    <Card.Footer>
-                        <Stack gap={2}>
-                        <small>Currently Assigned to: {job.staff}</small>
-                        {/* <Button variant="primary" onClick={() => handleIzaClick(job['id'])}>Assign to Iza</Button> */}
-                        </Stack>
-                    </Card.Footer>
-                </Card>
-                </Col>
-            ))
-        }</div>
+            <Container className='container-md py-4'>
+            { jobs && <Jobcard jobs={jobs} />}
+            </Container>
         </div>
 
      );

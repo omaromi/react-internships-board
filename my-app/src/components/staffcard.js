@@ -2,6 +2,8 @@ import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
 import Card from 'react-bootstrap/Card';
 import Accordion from 'react-bootstrap/Accordion'
+import { Link } from "react-router-dom";
+import Button from "react-bootstrap/esm/Button";
 
 
 const Staffcard = ({staffs}) => {
@@ -15,7 +17,7 @@ const Staffcard = ({staffs}) => {
 
                     <div className="card-header">    
                         <small className='btn disabled float-start'>{staff.name}</small>
-                        <small className='btn float-end'>{staff.name}'s Internships</small>
+                        <Button as={Link} to={'/internships/' + staff.name} className='btn float-end'>{staff.name}'s Internships</Button>
                     </div>
 
                     <div className="card-body">
