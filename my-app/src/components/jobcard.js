@@ -5,10 +5,18 @@ import Card from 'react-bootstrap/Card';
 import Stack from 'react-bootstrap/Stack';
 import TestForm from "./Form";
 import React from "react";
+import { Link, useHistory } from "react-router-dom";
 
 
 
-const Jobcard = ({jobs,handleIzaClick}) => {
+const Jobcard = ({jobs}) => {
+
+    const history = useHistory()
+
+    const handleDelete = (id) => {
+        fetch('http://127.0.0.1:8000/internships/' + id, {method:'DELETE'}
+        ).then(history.push('/'))
+        }
 
     return ( 
         <div className='job-list'>
@@ -30,9 +38,12 @@ const Jobcard = ({jobs,handleIzaClick}) => {
 
                     <Card.Footer>
                         <Stack gap={2}>
-                        <small>Currently Assigned to: {job.staff}</small>
+                        <div>Currently Assigned to: {job.staff}</div>
                         {/* <Button variant="primary" onClick={() => handleIzaClick(job['id'])}>Assign to Iza</Button> */}
+                        
                         </Stack>
+                        <Button as={Link} to={'/edit/' + job.id}>Edit Here</Button>
+                        <Button className='btn btn-secondary float-end' onClick={() => handleDelete(job.id)}>Delete</Button>
                     </Card.Footer>
                 </Card>
                 </Col>

@@ -60,7 +60,7 @@ def InternshipsList(request):
         else:
             return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
-@api_view(['GET','PUT','DELETE'])
+@api_view(['GET','POST','DELETE'])
 def InternshipDetail(request,id):
 
     try:
@@ -71,10 +71,12 @@ def InternshipDetail(request,id):
     if request.method == 'GET':
         serializer = InternshipSerializer(posting)
         return JsonResponse(serializer.data)
-    elif request.method == 'PUT':
+    elif request.method == 'POST':
         serializer = InternshipSerializer(posting, data=request.data)
+        staff = Staff.objects.get(name=(request.data.get('staff')))
+        company = Company.objects.get(name=(request.data.get('company')))
         if serializer.is_valid():
-            serializer.save()
+            serializer.save(staff=staff,company=company)
             return Response(serializer.data)
         return Response(serializer.errors,status=status.HTTP_400_BAD_REQUEST)
     elif request.method == 'DELETE':

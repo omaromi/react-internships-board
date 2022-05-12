@@ -10,6 +10,8 @@ import React from "react";
 const Homepage = () => {
 
     const jobs = useFetch('internships',null);
+    // let history = useHistory();
+    
 
     // const handleIzaClick = (id) => {
     //     // https://stackoverflow.com/questions/55856176/ui-not-re-rendering-on-state-update-using-react-hooks-and-form-submission

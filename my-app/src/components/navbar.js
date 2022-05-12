@@ -12,7 +12,7 @@ const Navigationbar = () => {
             <Nav.Link as={Link} to ='/'>Home</Nav.Link>
             <Nav.Link as={Link} to ='/add'>Add Internship</Nav.Link>
             <Nav.Link as={Link} to ='/staff'>Career Success Staff</Nav.Link>
-            <Nav.Link as={Link} to ='/other'>Some Other Function</Nav.Link>
+            <Nav.Link as={Link} to ='/filter'>Filter By Staff</Nav.Link>
         </Nav>
         </Navbar>
     );
