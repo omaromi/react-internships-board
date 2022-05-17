@@ -1,4 +1,4 @@
-import {useState, useEffect} from 'react';
+import { useState, useEffect } from 'react';
 import Container from 'react-bootstrap/Container';
 import Jobcard from './jobcard';
 import useFetch from '../hooks/useFetch';
@@ -9,9 +9,9 @@ import React from "react";
 
 const Homepage = () => {
 
-    const jobs = useFetch('internships',null);
+    const jobs = useFetch('internships', null);
     // let history = useHistory();
-    
+
 
     // const handleIzaClick = (id) => {
     //     // https://stackoverflow.com/questions/55856176/ui-not-re-rendering-on-state-update-using-react-hooks-and-form-submission
@@ -29,10 +29,10 @@ const Homepage = () => {
             {/* <React.Fragment><TestForm /> </React.Fragment> */}
 
             <Container className='container-md py-4'>
-            { jobs && <Jobcard jobs={jobs} />}
+                {jobs && <Jobcard jobs={jobs} />}
             </Container>
         </div>
-     );
+    );
 }
- 
+
 export default Homepage;

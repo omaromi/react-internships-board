@@ -1,14 +1,14 @@
 import React from "react";
-import TestForm from "./Form";
+import FilterSearchBar from "./Form";
 
-const SomeOtherFunction = () => {
+const FilterSearch = () => {
     return (
         <div className='othertest'>
             <React.Fragment>
-                <TestForm />
+                <FilterSearchBar />
             </React.Fragment>
         </div>
-      );
+    );
 }
- 
-export default SomeOtherFunction;
+
+export default FilterSearch;

@@ -5,22 +5,19 @@ import Jobcard from "./jobcard";
 
 const StaffInternships = () => {
 
-    let {id} = useParams()
+    let { id } = useParams()
 
-    const jobs = useFetch('internships',[]).filter(obj => obj.staff == id)
-    
+    const jobs = useFetch('internships', []).filter(obj => obj.staff == id)
 
-    return ( 
+
+    return (
         <div>
-            <h3>
-                ID: {id}
-            </h3>
 
             <Container className='container-md py-4'>
-            { jobs && <Jobcard jobs={jobs} />}
+                {jobs && <Jobcard jobs={jobs} />}
             </Container>
         </div>
-     );
+    );
 }
- 
+
 export default StaffInternships;
