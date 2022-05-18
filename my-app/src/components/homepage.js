@@ -1,16 +1,14 @@
-import { useState, useEffect } from 'react';
+// import { useState, useEffect } from 'react';
 import Container from 'react-bootstrap/Container';
 import Jobcard from './jobcard';
 import useFetch from '../hooks/useFetch';
-import TestForm from "./Form";
 import React from "react";
 
 
 
 const Homepage = () => {
 
-    const jobs = useFetch('internships', null);
-    // let history = useHistory();
+    const jobs = useFetch('internships', []);
 
 
     // const handleIzaClick = (id) => {
@@ -21,7 +19,35 @@ const Homepage = () => {
     //     newJobs[objIndex]['staff'] = 'Iza';
     //     // console.log('Iza Click Executed')
     //     setJobs(newJobs);
-    // };
+    // }; 
+
+    // const [save, setSave] = useState(false);
+    // const [buttonColor, setButtonColor] = useState('outline-dark')
+    // const [buttonText, setButtonText] = useState('Save?')
+
+    // jobs.map((job) => {
+    //     job['saved'] = save
+    //     job['buttoncolor'] = 'outline-dark'
+    //     job['buttontext'] = 'Save?'
+    // }
+    // )
+
+    // const handleSave = (id) => {
+    //     const objIndex = jobs.findIndex((obj => obj.id === id));
+    //     if (save) {
+    //         setButtonColor('dark');
+    //         setButtonText('Saved');
+    //     } else {
+    //         setButtonColor('outline-dark')
+    //         setButtonText('Save?');
+    //     }
+    //     jobs[objIndex]['saved'] = !save
+    //     jobs[objIndex]['buttoncolor'] = buttonColor
+    //     jobs[objIndex]['buttontext'] = buttonText
+
+    //     console.log('toggle executed', save, buttonColor, 'space', buttonText)
+    //     setSave(!save);
+    // }
 
 
     return (
