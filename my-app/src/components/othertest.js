@@ -1,5 +1,5 @@
 import React from "react";
-import FilterSearchBar from "./Form";
+import FilterSearchBar from "./FilterSearchBar";
 
 const FilterSearch = () => {
     return (

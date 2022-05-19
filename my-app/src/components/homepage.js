@@ -1,14 +1,40 @@
 // import { useState, useEffect } from 'react';
 import Container from 'react-bootstrap/Container';
 import Jobcard from './jobcard';
-import useFetch from '../hooks/useFetch';
+// import useFetch from '../hooks/useFetch';
 import React from "react";
+import { useSelector } from 'react-redux';
+// import { savetoggle } from "../redux/jobsSlice";
 
 
 
 const Homepage = () => {
 
-    const jobs = useFetch('internships', []);
+    // const jobs = useFetch('internships', []);
+
+    const jobs = useSelector((state) => state.jobs.arr)
+
+    // const dispatch = useDispatch()
+
+    // useEffect(() => {
+    //     // https://stackoverflow.com/questions/55840294/how-to-fix-missing-dependency-warning-when-using-useeffect-react-hook
+    //     // if you move initialState out of the useEffect Hook, then you get a warning about using initialState in the dependency array,
+    //     // but this is fine because initialState is not used anywhere else in the page
+    //     const initialState = jobs.map(job => ({ ...job, 'saved': false }))
+    //     console.log('re-render via useEffect')
+    //     dispatch(savetoggle(initialState))
+    // }, [jobs]
+    // )
+
+    // const handleReduxSave = (id) => {
+    //     // const newSaveState = JSON.parse(JSON.stringify(state));
+    //     const newSaveState = JSON.parse(JSON.stringify(jobs))
+    //     const objIndex = newSaveState.findIndex((obj => obj.id === id));
+    //     newSaveState[objIndex]['saved'] = !newSaveState[objIndex]['saved']
+    //     dispatch(savetoggle(newSaveState))
+    //     // setState(newSaveState)
+    // }
+
 
 
     // const handleIzaClick = (id) => {
@@ -20,34 +46,6 @@ const Homepage = () => {
     //     // console.log('Iza Click Executed')
     //     setJobs(newJobs);
     // }; 
-
-    // const [save, setSave] = useState(false);
-    // const [buttonColor, setButtonColor] = useState('outline-dark')
-    // const [buttonText, setButtonText] = useState('Save?')
-
-    // jobs.map((job) => {
-    //     job['saved'] = save
-    //     job['buttoncolor'] = 'outline-dark'
-    //     job['buttontext'] = 'Save?'
-    // }
-    // )
-
-    // const handleSave = (id) => {
-    //     const objIndex = jobs.findIndex((obj => obj.id === id));
-    //     if (save) {
-    //         setButtonColor('dark');
-    //         setButtonText('Saved');
-    //     } else {
-    //         setButtonColor('outline-dark')
-    //         setButtonText('Save?');
-    //     }
-    //     jobs[objIndex]['saved'] = !save
-    //     jobs[objIndex]['buttoncolor'] = buttonColor
-    //     jobs[objIndex]['buttontext'] = buttonText
-
-    //     console.log('toggle executed', save, buttonColor, 'space', buttonText)
-    //     setSave(!save);
-    // }
 
 
     return (

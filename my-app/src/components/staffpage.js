@@ -1,4 +1,3 @@
-import { useState, useEffect } from 'react';
 import Container from 'react-bootstrap/Container';
 import Staffcard from './staffcard';
 import useFetch from '../hooks/useFetch';

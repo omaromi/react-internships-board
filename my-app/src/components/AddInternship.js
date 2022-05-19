@@ -1,8 +1,6 @@
-import { useEffect, useState } from "react";
-import Button from "react-bootstrap/esm/Button";
+import { useState } from "react";
 import Form from 'react-bootstrap/Form'
 import FloatingLabel from "react-bootstrap/esm/FloatingLabel";
-import Container from "react-bootstrap/esm/Container";
 import useFetch from "../hooks/useFetch";
 
 const AddInternship = () => {

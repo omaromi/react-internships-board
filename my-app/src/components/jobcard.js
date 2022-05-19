@@ -5,11 +5,12 @@ import Card from 'react-bootstrap/Card';
 import Stack from 'react-bootstrap/Stack';
 import React from "react";
 import { Link, useHistory } from "react-router-dom";
-import { useState } from "react";
-import { useEffect } from "react";
+import { useDispatch } from 'react-redux';
+import { savetoggle } from "../redux/jobsSlice";
 
 
 
+// need to keep the jobs prop for the staff filter to work
 const Jobcard = ({ jobs }) => {
 
     const history = useHistory()
@@ -20,31 +21,40 @@ const Jobcard = ({ jobs }) => {
     }
 
 
-    const [state, setState] = useState([]);
+    const dispatch = useDispatch()
 
-    useEffect(() => {
-        // https://stackoverflow.com/questions/55840294/how-to-fix-missing-dependency-warning-when-using-useeffect-react-hook
-        // if you move initialState out of the useEffect Hook, then you get a warning about using initialState in the dependency array,
-        // but this is fine because initialState is not used anywhere else in the page
-        const initialState = jobs.map(job => ({ ...job, 'saved': false }))
-        console.log('re-render via useEffect')
-        setState(initialState);
-    }, [jobs]
-    )
+    // // useEffect(() => {
+    // //     // https://stackoverflow.com/questions/55840294/how-to-fix-missing-dependency-warning-when-using-useeffect-react-hook
+    // //     // if you move initialState out of the useEffect Hook, then you get a warning about using initialState in the dependency array,
+    // //     // but this is fine because initialState is not used anywhere else in the page
+    // //     const initialState = jobs.map(job => ({ ...job, 'saved': false }))
+    // //     console.log('re-render via useEffect')
+    // //     dispatch(savetoggle(initialState))
+    // // }, [jobs]
+    // // )
 
-
-    const handleSave = (id) => {
-        const newSaveState = [...state]
-        const objIndex = newSaveState.findIndex((obj => obj.id === id));
-        newSaveState[objIndex]['saved'] = !newSaveState[objIndex]['saved']
-        setState(newSaveState)
+    const handleReduxSave = (id) => {
+        // const newSaveState = JSON.parse(JSON.stringify(state));
+        const newSaveState = JSON.parse(JSON.stringify(jobs))
+        const arrIndex = newSaveState.findIndex((obj => obj.id === id));
+        newSaveState[arrIndex]['saved'] = !newSaveState[arrIndex]['saved']
+        dispatch(savetoggle(newSaveState[arrIndex]))
+        // setState(newSaveState)
     }
+
+    // const handleSave = (id) => {
+    //     const newSaveState = [...state]
+    //     const objIndex = newSaveState.findIndex((obj => obj.id === id));
+    //     newSaveState[objIndex]['saved'] = !newSaveState[objIndex]['saved']
+    //     console.log(newSaveState)
+    //     setState(newSaveState)
+    // }
 
 
     return (
         <div className='job-list'>
             <Row className='row row-cols-md-3 row-cols-sm-2 g-4'>
-                {state.map((job) => (
+                {jobs.map((job) => (
                     <Col key={job.id} >
                         <Card className='card h-100'>
 
@@ -64,7 +74,7 @@ const Jobcard = ({ jobs }) => {
                                     {/* <Button variant="primary" onClick={() => handleIzaClick(job['id'])}>Assign to Iza</Button> */}
 
                                 </Stack>
-                                <Button variant={job['saved'] ? 'dark' : 'outline-dark'} className='btn float-start' onClick={() => handleSave(job.id)}>{job['saved'] ? 'Saved' : 'Save?'}</Button>
+                                <Button variant={job['saved'] ? 'dark' : 'outline-dark'} className='btn float-start' onClick={() => handleReduxSave(job.id)}>{job['saved'] ? 'Saved' : 'Save?'}</Button>
                                 {/* <Button variant='outline-dark' className='btn float-start'>Save?</Button> */}
                                 <Button as={Link} to={'/edit/' + job.id}>Edit Here</Button>
                                 <Button className='btn btn-secondary float-end' onClick={() => handleDelete(job.id)}>Delete</Button>

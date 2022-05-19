@@ -1,19 +1,14 @@
 import { useState } from "react";
-import Button from "react-bootstrap/esm/Button";
 import Form from 'react-bootstrap/Form'
-import useFetch from "../hooks/useFetch";
-import { useEffect } from "react";
-import Col from "react-bootstrap/Col";
-import Row from "react-bootstrap/Row";
-import Card from 'react-bootstrap/Card';
-import Stack from 'react-bootstrap/Stack';
 import Container from "react-bootstrap/esm/Container";
 import Jobcard from "./jobcard";
+import { useSelector } from "react-redux";
+
 
 const FilterSearchBar = () => {
     const [staffFilter, setStaffFilter] = useState('');
 
-    const jobs = useFetch('internships', []).filter(obj => obj.staff.toLowerCase() == staffFilter.toLowerCase());
+    const jobs = useSelector((state) => state.jobs.arr).filter(obj => obj.staff.toLowerCase() === staffFilter.toLowerCase());
 
     return (
         <div className='test-form'>

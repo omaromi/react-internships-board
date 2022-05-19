@@ -8,8 +8,26 @@ import FilterSearch from './components/othertest';
 import StaffInternships from './components/StaffInternships';
 import EditInternship from './components/EditInternship';
 import InternshipDetails from './components/InternshipDetails';
+import { useDispatch } from 'react-redux';
+import { preload } from "./redux/jobsSlice";
+
+
 
 function App() {
+  const dispatch = useDispatch();
+
+  const preloadState = (endpoint) => {
+    fetch('http://127.0.0.1:8000/' + endpoint + '/')
+      .then(
+        res => { return res.json() }
+      ).then(data => {
+        dispatch(preload(data[endpoint]))
+      })
+    // console.log('custom data retrieved')
+  }
+
+  preloadState('internships')
+
   return (
     <div className="App">
       <Navigationbar />
